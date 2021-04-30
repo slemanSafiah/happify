@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-export default function SearchableSelect({ handleChange, options ,placeholder }) {
+export default function SearchableSelect({
+  handleChange,
+  options,
+  placeholder,
+}) {
   return (
     <>
       <Typeahead
@@ -10,6 +14,8 @@ export default function SearchableSelect({ handleChange, options ,placeholder })
         onChange={handleChange}
         options={options}
         placeholder={placeholder}
+        clearButton
+        highlightOnlyResult
       />
     </>
   );

@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import SearchableSelect from "../components/SearchableSelect";
-import { FormGroup, Row } from "react-bootstrap";
-const YEARS = ["all", "2015", "2016", "2017", "2018", "2019", "2020"];
-
-const Ranking = (props) => {
-  const [rowData, setrowData] = useState([]);
-  const [year, setYear] = useState("all");
+import { Container } from "react-bootstrap";
+const YEARS = ["2015", "2016", "2017", "2018", "2019", "2020"];
+const Ranking = () => {
+  const [rowData, setRowData] = useState([]);
+  const [year, setYear] = useState(null);
   const [country, setCountry] = useState(null);
   const [countries, setCountries] = useState([]);
   useEffect(() => {
-    setrowData([]);
+    setRowData([]);
     const endpoint = new URL("http://131.181.190.87:3000/rankings");
     const params = {};
-    if (year && year !== "all") params.year = year;
+    if (year) params.year = year;
     if (country) params.country = country;
     Object.keys(params).forEach((param) =>
       endpoint.searchParams.append(param, params[param])
     );
     fetch(endpoint)
       .then((response) => response.json())
-      .then((data) => setrowData(data));
+      .then((data) => setRowData(data));
   }, [year, country]);
 
   useEffect(() => {
@@ -29,8 +28,11 @@ const Ranking = (props) => {
       .then((data) => setCountries(data));
   }, []);
 
+  const gridStyle = { width: 820 };
+
   return (
-    <>
+    <Container className="ranking-container">
+      <h1>Ranking</h1>
       <div className="search-bar">
         <SearchableSelect
           handleChange={setYear}
@@ -44,12 +46,13 @@ const Ranking = (props) => {
           placeholder={"Choose a Country..."}
         ></SearchableSelect>
       </div>
-      <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+      <div className="ag-theme-alpine" style={gridStyle}>
         <AgGridReact
           overlayNoRowsTemplate={"Loading ..."}
           pagination
           paginationPageSize={10}
           rowData={rowData}
+          domLayout="autoHeight"
         >
           <AgGridColumn field="rank" sortable></AgGridColumn>
           <AgGridColumn field="country" sortable></AgGridColumn>
@@ -57,7 +60,7 @@ const Ranking = (props) => {
           <AgGridColumn field="year" sortable></AgGridColumn>
         </AgGridReact>
       </div>
-    </>
+    </Container>
   );
 };
 

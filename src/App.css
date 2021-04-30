@@ -3,6 +3,13 @@
 @import 'react-bootstrap-typeahead/css/Typeahead.css';
 * {
   max-width: 100%;
+  transition: all 200ms ease;
+}
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .navbar {
   margin-bottom: 1rem;
@@ -52,7 +59,6 @@
 
 .search-bar {
 
-  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
