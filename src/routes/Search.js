@@ -77,14 +77,14 @@ const Search = (props) => {
   }, []);
   return (
     <>
-      <div className="search-bar">
+      <div className="search-bar" style={{ position: "absolute", left: "10px" }}>
         <SearchableSelect
           handleChange={setCountry}
           options={countries}
           placeholder={"Choose a Country..."}
         ></SearchableSelect>
       </div>
-      <div className="ag-theme-alpine" style={{ height: 350, width: "50%" }}>
+      <div className="ag-theme-alpine" style={{ position: "absolute", left: "10px", top: "20%", height: 350, width: "46%" }}>
         <AgGridReact
           overlayNoRowsTemplate={"Select a Country ..."}
           rowData={rowData}
@@ -94,10 +94,12 @@ const Search = (props) => {
           <AgGridColumn field="score" sortable></AgGridColumn>
         </AgGridReact>
       </div>
-      <MDBContainer>
-        <h3 className="mt-5">Line Chart</h3>
-        <Line data={dataLine} options={{ responsive: true }} />
-      </MDBContainer>
+      <div style={{ position: "absolute", width: "50%", top: "10%", right: "0px" }}>
+        <MDBContainer>
+          {country ? <h3 className="mt-5">Line Chart</h3> : <></>}
+          <Line data={dataLine} options={{ responsive: true }} />
+        </MDBContainer>
+      </div>
     </>
   );
 };
