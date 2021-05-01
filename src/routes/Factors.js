@@ -7,23 +7,39 @@ const YEARS = ["2015", "2016", "2017", "2018", "2019", "2020"];
 
 const Factors = (props) => {
   const [rowData, setRowData] = useState([]);
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState([]);
+  const [limit, setLimit] = useState(null);
+  const [country, setCountry] = useState([])
+  const [countries, setCountries] = useState([]);
+
   const { user } = useContext(AuthContext);
   useEffect(() => {
     setRowData([]);
-    if (year && year.length) {
-      // because year is acutlly stored as an array
+    if (year.length) {
       const endpoint = new URL(`http://131.181.190.87:3000/factors/${year}`);
       let requestOptions = {
         headers: new Headers({
           Authorization: "Bearer " + user.token,
         }),
       };
+      const params = {};
+
+      if (limit) params.limit = limit;
+      if (country.length) params.country = country;
+      Object.keys(params).forEach((param) =>
+        endpoint.searchParams.append(param, params[param])
+      );
       fetch(endpoint, requestOptions)
         .then((response) => response.json())
         .then((data) => setRowData(data));
     }
-  }, [year]);
+  }, [year,limit,country]);
+  useEffect(() => {
+    fetch("http://131.181.190.87:3000/countries")
+      .then((response) => response.json())
+      .then((data) => setCountries(data));
+  }, []);
+
   const onGridReady = ({ api }) => {
     api.sizeColumnsToFit();
   };
@@ -36,6 +52,13 @@ const Factors = (props) => {
           options={YEARS}
           placeholder={"Choose A Year..."}
         ></SearchableSelect>
+        <SearchableSelect
+          handleChange={setCountry}
+          options={countries}
+          placeholder={"Choose A Country..."}
+        ></SearchableSelect>
+          <input type='number' onChange={({target}) => setLimit(target.value)} placeholder='Limit' style={{width : '10rem'}} className='form-control '>
+          </input>
       </div>
       <div className="ag-theme-alpine data-table-factors">
         <AgGridReact
