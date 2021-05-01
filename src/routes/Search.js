@@ -72,6 +72,10 @@ const Search = (props) => {
       .then((data) => setCountries(data));
   }, []);
 
+  const onGridReady = ({ api }) => {
+    api.sizeColumnsToFit();
+  };
+
   return (
     <div className="page-container">
       <h1>Search</h1>
@@ -87,9 +91,10 @@ const Search = (props) => {
           overlayNoRowsTemplate={"Select a Country ..."}
           pagination
           paginationPageSize={10}
+          cacheBlockSize={10}
           rowData={rowData}
           domLayout="autoHeight"
-          
+          onGridReady={onGridReady}
         >
           <AgGridColumn field="year" sortable></AgGridColumn>
           <AgGridColumn field="rank" sortable></AgGridColumn>
@@ -97,7 +102,7 @@ const Search = (props) => {
         </AgGridReact>
       </div>
       <div>
-        <MDBContainer className='chart'>
+        <MDBContainer className="chart">
           {country ? <h3>Line Chart</h3> : <></>}
           <Line data={dataLine} options={{ responsive: true }} />
         </MDBContainer>

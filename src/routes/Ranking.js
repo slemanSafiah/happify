@@ -28,6 +28,9 @@ const Ranking = () => {
       .then((data) => setCountries(data));
   }, []);
 
+  const onGridReady = ({ api }) => {
+    api.sizeColumnsToFit();
+  };
 
   return (
     <Container className="page-container">
@@ -45,13 +48,15 @@ const Ranking = () => {
           placeholder={"Choose a Country..."}
         ></SearchableSelect>
       </div>
-      <div className="ag-theme-alpine data-table" >
+      <div className="ag-theme-alpine data-table">
         <AgGridReact
           overlayNoRowsTemplate={"Loading ..."}
           pagination
           paginationPageSize={10}
+          cacheBlockSize={10}
           rowData={rowData}
           domLayout="autoHeight"
+          onGridReady={onGridReady}
         >
           <AgGridColumn field="rank" sortable></AgGridColumn>
           <AgGridColumn field="country" sortable></AgGridColumn>

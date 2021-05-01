@@ -24,6 +24,9 @@ const Factors = (props) => {
         .then((data) => setRowData(data));
     }
   }, [year]);
+  const onGridReady = ({ api }) => {
+    api.sizeColumnsToFit();
+  };
   return (
     <Container className="page-container">
       <h1>Factors</h1>
@@ -40,7 +43,9 @@ const Factors = (props) => {
           rowData={rowData}
           pagination
           paginationPageSize={10}
+          cacheBlockSize={10}
           domLayout="autoHeight"
+          onGridReady={onGridReady}
         >
           <AgGridColumn field="rank" sortable></AgGridColumn>
           <AgGridColumn field="country" sortable></AgGridColumn>
