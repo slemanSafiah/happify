@@ -8,7 +8,7 @@ import Ranking from "./routes/Ranking";
 import Factors from "./routes/Factors";
 import NavBar from "./components/Navbar";
 import { AuthProvider } from './context/Context'
-
+import PrivateRoute from './routes/PrivateRoute'
 function App() {
   return (
     <div>
@@ -19,9 +19,9 @@ function App() {
             <Route path="/" exact component={Main} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/ranking" component={Ranking} />
-            <Route path="/search" component={Search} />
-            <Route path="/factors" component={Factors} />
+            <PrivateRoute path="/ranking" component={Ranking} />
+            <PrivateRoute path="/search" component={Search} />
+            <PrivateRoute path="/factors" component={Factors} />
           </Switch>
         </AuthProvider>
       </Router>
