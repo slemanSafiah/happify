@@ -6,20 +6,20 @@ import { AuthContext } from '../context/Context';
 const NavBar = (props) => {
   const { user, setUser } = useContext(AuthContext);
   return (
-    <Navbar className='navbar' expand="lg" bg="dark" sticky="top" variant="dark">
+    <Navbar className='navbar' expand="md" bg="dark" sticky="top" variant="dark">
       <Navbar.Brand as={Link} to="/">
         Happify
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/ranking">
+          <Nav.Link eventKey={'ranking'} as={Link} to="/ranking">
             Ranking
           </Nav.Link>
-          <Nav.Link as={Link} to="/search">
+          <Nav.Link eventKey={'search'} as={Link} to="/search">
             Search
           </Nav.Link>
-          <Nav.Link as={Link} to="/factors">
+          <Nav.Link eventKey={'factors'} as={Link} to="/factors">
             Factors
           </Nav.Link>
         </Nav>
@@ -28,10 +28,10 @@ const NavBar = (props) => {
             <Nav.Link as={Link} to='/' onClick={() => { setUser(null) }}>
               Logout
             </Nav.Link> : (<>
-              <Nav.Link as={Link} to='/register' >
+              <Nav.Link eventKey={'register'} as={Link} to='/register' >
                 Register
             </Nav.Link>
-              <Nav.Link as={Link} to='/login' >
+              <Nav.Link eventKey={'login'} as={Link} to='/login' >
                 Login
             </Nav.Link></>)}
         </Nav>

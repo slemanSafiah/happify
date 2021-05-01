@@ -8,7 +8,7 @@ import Ranking from "./routes/Ranking";
 import Factors from "./routes/Factors";
 import NavBar from "./components/Navbar";
 import { AuthProvider } from './context/Context'
-import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from './components/PrivateRoute'
 function App() {
   return (
     <div>
