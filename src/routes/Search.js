@@ -40,8 +40,7 @@ class DataLine {
 
 const Search = (props) => {
   const [rowData, setrowData] = useState([]);
-  const [year, setYear] = useState("all");
-  const [country, setCountry] = useState(null);
+  const [country, setCountry] = useState([]);
   const [countries, setCountries] = useState([]);
   const [dataLine, setdataLine] = useState(null);
 

@@ -1,9 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
-import NavBar from "../components/Navbar";
-import CenteredContainer from "../components/CenteredContainer";
 import { Card, Button, Alert, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import img from "../assets/img.jpg";
 //import './style.css'
 import { AuthContext } from "../context/Context";
 

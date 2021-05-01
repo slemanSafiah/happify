@@ -5,15 +5,15 @@ import { Container } from "react-bootstrap";
 const YEARS = ["2015", "2016", "2017", "2018", "2019", "2020"];
 const Ranking = () => {
   const [rowData, setRowData] = useState([]);
-  const [year, setYear] = useState(null);
-  const [country, setCountry] = useState(null);
+  const [year, setYear] = useState([]);
+  const [country, setCountry] = useState([]);
   const [countries, setCountries] = useState([]);
   useEffect(() => {
     setRowData([]);
     const endpoint = new URL("http://131.181.190.87:3000/rankings");
     const params = {};
-    if (year) params.year = year;
-    if (country) params.country = country;
+    if (year.length) params.year = year;
+    if (country.length) params.country = country;
     Object.keys(params).forEach((param) =>
       endpoint.searchParams.append(param, params[param])
     );

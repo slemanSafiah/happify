@@ -1,6 +1,5 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
-import img from "../assets/img.jpg";
 /**
  * @author
  * @function Main
