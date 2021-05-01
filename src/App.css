@@ -1,16 +1,26 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-@import 'react-bootstrap-typeahead/css/Typeahead.css';
+@import "react-bootstrap-typeahead/css/Typeahead.css";
 * {
   max-width: 100%;
   transition: all 200ms ease;
 }
-.ranking-container {
+
+
+
+.jumbotron {
+  max-width: 90vw;
+  background-color: #343A40;
+  color: white;
+}
+
+.page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .navbar {
   margin-bottom: 1rem;
 }
@@ -33,7 +43,6 @@
 .img {
   top: -5px;
   width: 100%;
-  
 }
 
 .flow {
@@ -48,22 +57,35 @@
 }
 
 .reg {
-  color: antiquewhite;
   font-weight: 600;
 }
 
 .card {
-  background-color: floralwhite;
-  opacity: 0.8;
+  width: 300px;
+  max-width: 70vw;
+  color: white;
+  background-color: #343A40;
 }
 
 .search-bar {
-
-  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
 .search-bar-item {
   height: 2rem !important;
+}
+.chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-bottom: 2rem;
+}
+
+.data-table{
+  width: 820px;
+  max-width: 90vw;
+  margin-bottom: 1rem;
 }

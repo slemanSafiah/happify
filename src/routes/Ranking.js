@@ -28,10 +28,9 @@ const Ranking = () => {
       .then((data) => setCountries(data));
   }, []);
 
-  const gridStyle = { width: 820 };
 
   return (
-    <Container className="ranking-container">
+    <Container className="page-container">
       <h1>Ranking</h1>
       <div className="search-bar">
         <SearchableSelect
@@ -46,7 +45,7 @@ const Ranking = () => {
           placeholder={"Choose a Country..."}
         ></SearchableSelect>
       </div>
-      <div className="ag-theme-alpine" style={gridStyle}>
+      <div className="ag-theme-alpine data-table" >
         <AgGridReact
           overlayNoRowsTemplate={"Loading ..."}
           pagination

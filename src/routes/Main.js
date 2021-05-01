@@ -8,7 +8,7 @@ import img from "../assets/img.jpg";
 
 const Main = (props) => {
   return (
-    <>
+    <div className='bg-img page-container'>
       <Jumbotron>
         <h1>The Happiness Data App</h1>
         <p>
@@ -18,7 +18,7 @@ const Main = (props) => {
 
       </Jumbotron>
 
-    </>
+    </div>
   );
 };
 

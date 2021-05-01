@@ -19,8 +19,8 @@ function App() {
             <Route path="/" exact component={Main} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <PrivateRoute path="/ranking" component={Ranking} />
-            <PrivateRoute path="/search" component={Search} />
+            <Route path="/ranking" component={Ranking} />
+            <Route path="/search" component={Search} />
             <PrivateRoute path="/factors" component={Factors} />
           </Switch>
         </AuthProvider>

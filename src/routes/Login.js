@@ -35,9 +35,7 @@ export default function Login() {
   }
 
   return (
-    <>
-      <img src={img} alt="happy" width="100%" className="img" />
-      <CenteredContainer>
+    <div className='page-container'>
         <Card>
           <Card.Body className="card">
             <h2 className="text-center mb-4">Login</h2>
@@ -63,7 +61,6 @@ export default function Login() {
             <span className="reg">Register</span>
           </Link>
         </div>
-      </CenteredContainer>
-    </>
+    </div>
   );
 }

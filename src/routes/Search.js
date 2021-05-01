@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import SearchableSelect from "../components/SearchableSelect";
@@ -7,7 +6,7 @@ import { MDBContainer } from "mdbreact";
 
 class DataLine {
   constructor(data) {
-    this.data = data
+    this.data = data;
   }
   get DataLineObj() {
     return {
@@ -34,14 +33,12 @@ class DataLine {
           pointHitRadius: 10,
           data: this.data,
         },
-      ]
-    }
+      ],
+    };
   }
-};
+}
 
 const Search = (props) => {
-
-
   const [rowData, setrowData] = useState([]);
   const [year, setYear] = useState("all");
   const [country, setCountry] = useState(null);
@@ -49,7 +46,7 @@ const Search = (props) => {
   const [dataLine, setdataLine] = useState(null);
 
   useEffect(() => {
-    console.log(dataLine)
+    console.log(dataLine);
     setrowData([]);
     const endpoint = new URL("http://131.181.190.87:3000/rankings");
     const params = {};
@@ -62,11 +59,11 @@ const Search = (props) => {
       fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {
-          setrowData(data)
-          let d = data.map(ele => ele.rank)
-          let dd = new DataLine(d)
-          setdataLine(dd.DataLineObj)
-        })
+          setrowData(data);
+          let d = data.map((ele) => ele.rank);
+          let dd = new DataLine(d);
+          setdataLine(dd.DataLineObj);
+        });
     }
   }, [country]);
 
@@ -75,32 +72,38 @@ const Search = (props) => {
       .then((response) => response.json())
       .then((data) => setCountries(data));
   }, []);
+
   return (
-    <>
-      <div className="search-bar" style={{ position: "absolute", left: "10px" }}>
+    <div className="page-container">
+      <h1>Search</h1>
+      <div className="search-bar">
         <SearchableSelect
           handleChange={setCountry}
           options={countries}
           placeholder={"Choose a Country..."}
         ></SearchableSelect>
       </div>
-      <div className="ag-theme-alpine" style={{ position: "absolute", left: "10px", top: "20%", height: 350, width: "46%" }}>
+      <div className="ag-theme-alpine data-table">
         <AgGridReact
           overlayNoRowsTemplate={"Select a Country ..."}
+          pagination
+          paginationPageSize={10}
           rowData={rowData}
+          domLayout="autoHeight"
+          
         >
           <AgGridColumn field="year" sortable></AgGridColumn>
           <AgGridColumn field="rank" sortable></AgGridColumn>
           <AgGridColumn field="score" sortable></AgGridColumn>
         </AgGridReact>
       </div>
-      <div style={{ position: "absolute", width: "50%", top: "10%", right: "0px" }}>
-        <MDBContainer>
-          {country ? <h3 className="mt-5">Line Chart</h3> : <></>}
+      <div>
+        <MDBContainer className='chart'>
+          {country ? <h3>Line Chart</h3> : <></>}
           <Line data={dataLine} options={{ responsive: true }} />
         </MDBContainer>
       </div>
-    </>
+    </div>
   );
 };
 

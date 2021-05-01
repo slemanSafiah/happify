@@ -38,9 +38,7 @@ export default function Register() {
   }
 
   return (
-    <>
-      <img src={img} alt="happy" width="100%" className="img" />
-      <CenteredContainer>
+    <div className='page-container'>
         <Card>
           <Card.Body className='card'>
             <h2 className="text-center mb-4">Register</h2>
@@ -63,8 +61,7 @@ export default function Register() {
         <div className="w-100 text-center mt-2 link1">
           Have an Account ? <Link to='/login'><span className="reg">Login</span></Link>
         </div>
-      </CenteredContainer>
-    </>
+    </div>
   )
 
 }
