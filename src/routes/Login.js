@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import CenteredContainer from "../components/CenteredContainer";
 import { Card, Button, Alert, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import img from "../assets/img.jpg";
-
+import { AuthContext } from '../context/Context';
 
 export default function Login() {
   const emailRef = useRef();
@@ -11,20 +11,26 @@ export default function Login() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { setUser } = useContext(AuthContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      setLoading(true);
-      setError("");
-      console.log(emailRef.current.value);
-      console.log(passwordRef.current.value);
-      let user; // await API
-      // if (user.token != null) {
-      //     history.push('/')
-      // }
+      setLoading(true)
+      setError('')
+      const endpoint = new URL("http://131.181.190.87:3000/user/login");
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailRef.current.value, password: passwordRef.current.value })
+      };
+      let user = await fetch(endpoint, requestOptions);
+      if (user.status === 200) {
+        history.push('/')
+        setUser({ token: 1 })
+      }
     } catch (error) {
-      setError(error);
+      setError(error)
     }
   }
 

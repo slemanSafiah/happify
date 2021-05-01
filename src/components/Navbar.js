@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-/**
- * @author
- * @function NavBar
- **/
+import { AuthContext } from '../context/Context';
 
 const NavBar = (props) => {
+  const { user, setUser } = useContext(AuthContext);
   return (
     <Navbar className='navbar' expand="lg" bg="dark" sticky="top" variant="dark">
       <Navbar.Brand as={Link} to="/">
@@ -27,15 +24,16 @@ const NavBar = (props) => {
           </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link as={Link} to="/login">
-            Login
-          </Nav.Link>
-          <Nav.Link as={Link} to="/">
-            Logout
-          </Nav.Link>
-          <Nav.Link as={Link} to="/register">
-            Register
-          </Nav.Link>
+          {user?.token ?
+            <Nav.Link as={Link} to='/' onClick={() => { setUser(null) }}>
+              Logout
+            </Nav.Link> : (<>
+              <Nav.Link as={Link} to='/register' >
+                Register
+            </Nav.Link>
+              <Nav.Link as={Link} to='/login' >
+                Login
+            </Nav.Link></>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
