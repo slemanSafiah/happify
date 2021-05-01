@@ -7,6 +7,7 @@ export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const history = useHistory();
+  console.log(history);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { setUser } = useContext(AuthContext);
@@ -27,9 +28,9 @@ export default function Login() {
       };
       let res = await fetch(endpoint, requestOptions);
       if (res.status === 200) {
-        history.push("/");
         let user = await res.json();
         setUser({ token: user.token });
+        history.push('/factors');
       }
     } catch (error) {
       setError(error);
