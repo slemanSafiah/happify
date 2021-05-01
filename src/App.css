@@ -6,11 +6,13 @@
   transition: all 200ms ease;
 }
 
-
+body {
+  margin-bottom: 2rem;
+}
 
 .jumbotron {
   max-width: 90vw;
-  background-color: #343A40;
+  background-color: #343a40;
   color: white;
 }
 
@@ -64,7 +66,7 @@
   width: 300px;
   max-width: 70vw;
   color: white;
-  background-color: #343A40;
+  background-color: #343a40;
 }
 
 .search-bar {
@@ -84,13 +86,13 @@
   margin-bottom: 2rem;
 }
 
-.data-table{
+.data-table {
   width: 820px;
   max-width: 90vw;
   margin-bottom: 1rem;
 }
-.data-table-factors{
+.data-table-factors {
   width: 100%;
- 
+
   margin-bottom: 1rem;
 }

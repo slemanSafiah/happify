@@ -1,22 +1,18 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
-/**
- * @author
- * @function Main
- **/
+import img from "../assets/stats.svg"
 
 const Main = (props) => {
   return (
-    <div className='bg-img page-container'>
+    <div className="bg-img page-container">
       <Jumbotron>
-        <h1>The Happiness Data App</h1>
+        <h1>Happify</h1>
         <p>
-        Welcome to the amazing Happiness Data App . Tomorrow , and Tomorrow ,
-        and Tomorrow , Creeps in this pretty pace from day to day.
+          React-based web application to allow users to view and analyse
+          ‘happiness survey’ data drawn from a database exposed via a REST API.
         </p>
-
       </Jumbotron>
-
+        <img className='hero-img' src={img} alt={'stats'} ></img>
     </div>
   );
 };
