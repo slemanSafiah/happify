@@ -1,8 +1,6 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { Card, Button, Alert, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-//import './style.css'
-import { AuthContext } from "../context/Context";
 
 export default function Register() {
   const emailRef = useRef();
@@ -10,7 +8,6 @@ export default function Register() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { setUser } = useContext(AuthContext);
 
   async function handleSubmit(e) {
     e.preventDefault();

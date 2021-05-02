@@ -101,12 +101,12 @@ const Search = (props) => {
           <AgGridColumn field="score" sortable></AgGridColumn>
         </AgGridReact>
       </div>
-      <div>
+      {country.length ?<div>
         <MDBContainer className="chart">
           {country ? <h3>Line Chart</h3> : <></>}
           <Line data={dataLine} options={{ responsive: true }} />
         </MDBContainer>
-      </div>
+      </div> : ''}
     </div>
   );
 };

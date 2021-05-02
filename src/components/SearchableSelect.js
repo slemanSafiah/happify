@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 export default function SearchableSelect({
